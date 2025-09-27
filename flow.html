@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Flow - InnovateSphere Hackathon 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 30px 20px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px 20px;
+      position: relative;
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #667eea, #764ba2, #ff6b6b);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    }
+    
+    .day {
+      position: relative;
+      margin-bottom: 60px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+    
+    .day:nth-child(1) { animation-delay: 0.2s; }
+    .day:nth-child(2) { animation-delay: 0.4s; }
+    
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .day:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .day::before {
+      content: '';
+      position: absolute;
+      left: -60px;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+      z-index: 2;
+    }
+    
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .day-number {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+    
+    h2 {
+      color: #333;
+      margin: 0;
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .day-content {
+      display: grid;
+      gap: 20px;
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px;
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 15px;
+      border-left: 4px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .info-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #667eea, #764ba2);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .info-item:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .info-item:hover {
+      background: rgba(102, 126, 234, 0.1);
+      transform: translateX(10px);
+    }
+    
+    .info-icon {
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .info-text {
+      flex: 1;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 60px auto 40px;
+      padding: 18px 35px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .back-button:hover::before {
+      left: 100%;
+    }
+    
+    .back-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
+    }
+    
+    .back-container {
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .container {
+        margin: 40px auto;
+        padding: 20px 15px;
+      }
+      
+      .timeline {
+        padding-left: 30px;
+      }
+      
+      .day {
+        padding: 25px;
+        margin-bottom: 40px;
+      }
+      
+      .day::before {
+        left: -45px;
+        width: 16px;
+        height: 16px;
+      }
+      
+      .day-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .info-item {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .info-icon {
+        align-self: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background particles -->
+  <div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.8s;"></div>
+  </div>
+
+  <header>
+    <h1>
+      <i class="fas fa-route"></i>
+      Flow of Event
+      <i class="fas fa-calendar-alt"></i>
+    </h1>
+  </header>
+
+  <div class="container">
+    <div class="timeline">
+      <div class="day">
+        <div class="day-header">
+          <div class="day-number">1</div>
+          <h2>Day 1 – Idea Pitch</h2>
+        </div>
+        <div class="day-content">
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-presentation"></i>
+            </div>
+            <div class="info-text">
+              Each team presents their idea via <span class="highlight">PPT</span> (format given at registration).
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="info-text">
+              <span class="highlight">7 minutes</span> presentation + <span class="highlight">3–5 minutes</span> Q&A with judges.
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="info-text">
+              Evaluation based on <span class="highlight">clarity</span>, <span class="highlight">originality</span>, and <span class="highlight">feasibility</span>.
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-flag-checkered"></i>
+            </div>
+            <div class="info-text">
+              Top teams get <span class="highlight">shortlisted</span> for Round 2.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-header">
+          <div class="day-number">2</div>
+          <h2>Day 2 – Prototype + Demo</h2>
+        </div>
+        <div class="day-content">
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="info-text">
+              Shortlisted teams submit <span class="highlight">GitHub repo</span> + <span class="highlight">3–5 min demo video</span>.
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-stopwatch"></i>
+            </div>
+            <div class="info-text">
+              Each team gets <span class="highlight">12–15 minutes</span> (<span class="highlight">5 min demo</span> + rest Q&A).
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="info-text">
+              Evaluation based on <span class="highlight">working prototype</span>, <span class="highlight">technical depth</span>, <span class="highlight">innovation</span>, <span class="highlight">usability</span>, and <span class="highlight">impact</span>.
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="info-text">
+              <span class="highlight">Winners announced</span> at the end of Day 2.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="back-container">
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+      Back to Home
+    </a>
+  </div>
+</body>
+</html>

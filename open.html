@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Innovation - InnovateSphere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      color: white; 
+      margin: 0; 
+      padding: 0; 
+      min-height: 100vh;
+    }
+    
+    .container { 
+      max-width: 1000px; 
+      margin: auto; 
+      padding: 40px 20px; 
+    }
+    
+    .header { 
+      text-align: center; 
+      margin-bottom: 50px; 
+    }
+    
+    h1 { 
+      font-family: 'Orbitron', monospace; 
+      font-size: 3rem; 
+      margin-bottom: 20px; 
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .intro-section {
+      margin-bottom: 40px;
+    }
+    
+    .intro-card { 
+      background: rgba(255,255,255,0.1); 
+      padding: 40px; 
+      border-radius: 20px; 
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+    
+    .intro-card h2 { 
+      font-size: 1.8rem; 
+      margin-bottom: 20px; 
+      color: #ffd54a; 
+      font-family: 'Orbitron', monospace;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .intro-card p { 
+      line-height: 1.7; 
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    
+    strong {
+      color: #00e6e6;
+      font-weight: 700;
+    }
+    
+    .requirements, .evaluation {
+      margin-top: 30px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .requirements h3, .evaluation h3 {
+      font-family: 'Orbitron', monospace;
+      color: #ffd54a;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.3rem;
+    }
+    
+    .requirements ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .requirements li {
+      margin: 12px 0;
+    }
+    
+    .req-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.05rem;
+      padding: 8px 0;
+    }
+    
+    .req-item i {
+      color: #00e6e6;
+      width: 20px;
+    }
+    
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .criteria-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: rgba(102, 126, 234, 0.2);
+      border-radius: 12px;
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .criteria-item:hover {
+      background: rgba(102, 126, 234, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .criteria-item i {
+      color: #ffd54a;
+      font-size: 1.2rem;
+    }
+    
+    .criteria-item span {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    
+    .back-button { 
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 60px auto 40px;
+      padding: 18px 35px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      text-decoration: none; 
+      font-weight: 700; 
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+      font-size: 1.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .back-button:hover::before {
+      left: 100%;
+    }
+    
+    .back-button:hover { 
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(255, 107, 107, 0.6);
+    }
+    
+    .back-container {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      h1 { 
+        font-size: 2rem; 
+        flex-direction: column;
+        gap: 10px;
+      }
+      .container { padding: 20px 15px; }
+      .intro-card { padding: 25px; }
+      .criteria-grid { 
+        grid-template-columns: 1fr;
+      }
+      .criteria-item {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-lightbulb"></i> Open Innovation</h1>
+      <p class="subtitle">Unleash your creativity and build innovative solutions that push the boundaries of technology</p>
+    </div>
+    
+    <div class="intro-section">
+      <div class="intro-card">
+        <h2><i class="fas fa-rocket"></i> Freedom & Creativity</h2>
+        <p>Open Innovation is all about <strong>freedom and creativity</strong>. Teams can propose their own problem statements in any field they're passionate about – from <span class="highlight">sustainability and social good</span> to <span class="highlight">futuristic tech ideas</span>.</p>
+        
+        <div class="requirements">
+          <h3><i class="fas fa-clipboard-list"></i> Submission Requirements:</h3>
+          <ul>
+            <li><span class="req-item"><i class="fas fa-bullseye"></i> Clear problem definition</span></li>
+            <li><span class="req-item"><i class="fas fa-file-alt"></i> Short description</span></li>
+            <li><span class="req-item"><i class="fas fa-lightbulb"></i> Proposed solution outline</span></li>
+          </ul>
+        </div>
+        
+        <div class="evaluation">
+          <h3><i class="fas fa-star"></i> Evaluation Criteria:</h3>
+          <div class="criteria-grid">
+            <div class="criteria-item">
+              <i class="fas fa-magic"></i>
+              <span>Originality</span>
+            </div>
+            <div class="criteria-item">
+              <i class="fas fa-target"></i>
+              <span>Relevance</span>
+            </div>
+            <div class="criteria-item">
+              <i class="fas fa-cogs"></i>
+              <span>Feasibility</span>
+            </div>
+            <div class="criteria-item">
+              <i class="fas fa-chart-line"></i>
+              <span>Impact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back-container">
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>
