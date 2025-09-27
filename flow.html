@@ -242,11 +242,7 @@
     }
     
     .highlight {
-      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      color: white;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 600;
+      font-weight: bold;
     }
     
     .back-button {
@@ -301,24 +297,33 @@
         gap: 10px;
       }
       
+      header { padding: 20px 15px; }
+      
       .container {
-        margin: 40px auto;
+        margin: 30px auto;
         padding: 20px 15px;
       }
       
       .timeline {
-        padding-left: 30px;
+        padding-left: 25px;
+      }
+      
+      .timeline::before {
+        left: 15px;
+        width: 3px;
       }
       
       .day {
-        padding: 25px;
-        margin-bottom: 40px;
+        padding: 25px 20px;
+        margin-bottom: 30px;
+        border-radius: 15px;
       }
       
       .day::before {
-        left: -45px;
+        left: -35px;
         width: 16px;
         height: 16px;
+        top: 25px;
       }
       
       .day-header {
@@ -327,14 +332,112 @@
         gap: 10px;
       }
       
+      .day-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+      
+      h2 { font-size: 1.5rem; }
+      
       .info-item {
-        flex-direction: column;
-        text-align: center;
+        padding: 15px;
+        border-radius: 12px;
       }
       
       .info-icon {
-        align-self: center;
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
       }
+      
+      .info-text { font-size: 1rem; }
+      
+      .back-button {
+        padding: 15px 30px;
+        font-size: 1rem;
+      }
+    }
+
+    /* Mobile Optimization - Phones */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8rem;
+        gap: 8px;
+      }
+      
+      header { padding: 15px 10px; }
+      
+      .container {
+        margin: 20px auto;
+        padding: 15px 10px;
+      }
+      
+      .timeline {
+        padding-left: 20px;
+      }
+      
+      .timeline::before {
+        left: 12px;
+        width: 2px;
+      }
+      
+      .day {
+        padding: 20px 15px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+      }
+      
+      .day::before {
+        left: -28px;
+        width: 14px;
+        height: 14px;
+        top: 20px;
+      }
+      
+      .day-header {
+        gap: 8px;
+      }
+      
+      .day-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+      
+      h2 { font-size: 1.3rem; }
+      
+      .info-item {
+        padding: 12px;
+        border-radius: 10px;
+        gap: 12px;
+      }
+      
+      .info-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+      }
+      
+      .info-text { font-size: 0.95rem; }
+      
+      .back-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+        margin-top: 50px;
+      }
+      
+      .back-container { margin-top: 60px; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 320px) {
+      header h1 { font-size: 1.6rem; }
+      .day { padding: 15px 12px; }
+      h2 { font-size: 1.2rem; }
+      .info-item { padding: 10px; }
+      .info-text { font-size: 0.9rem; }
+      .back-button { padding: 10px 20px; font-size: 0.85rem; }
     }
   </style>
 </head>

@@ -68,6 +68,190 @@
     .contact p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
     .person { font-size: 1.1rem; margin: 15px 0; }
     .person i { margin-right: 10px; color: #ffd54a; }
+
+    /* Mobile Optimization - Tablets and smaller */
+    @media (max-width: 768px) {
+      .container { padding: 0 15px; }
+      
+      /* Header Mobile */
+      .header-content { flex-direction: column; gap: 15px; padding: 15px 0; }
+      .header-left { gap: 10px; }
+      .header-left img { height: 60px; width: 70px; }
+      .brand-info h1 { font-size: 1.5rem; }
+      .brand-info p { font-size: 0.8rem; }
+      nav ul { gap: 20px; flex-wrap: wrap; justify-content: center; }
+      nav a { font-size: 0.9rem; }
+      
+      main { margin-top: 140px; }
+      
+      /* Hero Mobile */
+      .hero { padding: 40px 0; }
+      .hero .dept { font-size: 1.1rem; }
+      .hero .eng { font-size: 2rem; }
+      .hero h2 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; margin-bottom: 30px; }
+      .cta-button { padding: 12px 30px; font-size: 1rem; }
+      
+      /* Event Details Mobile */
+      .event-details { padding: 30px 20px; margin: 30px 0; }
+      .event-details h2 { font-size: 2rem; }
+      .details-grid { grid-template-columns: 1fr; gap: 20px; }
+      .detail-card { padding: 20px; }
+      .detail-card i { font-size: 2.5rem; }
+      
+      /* Features Mobile */
+      .features { padding: 40px 0; }
+      .features h2 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; gap: 20px; }
+      .feature-card { padding: 25px; }
+      .feature-card h3 { font-size: 1.3rem; }
+      
+      /* Registration Mobile */
+      .registration { padding: 30px 20px; margin: 30px 0; }
+      .registration h2 { font-size: 2rem; }
+      .countdown { gap: 15px; flex-wrap: wrap; }
+      .countdown-item { padding: 15px; min-width: 70px; }
+      .countdown-item .number { font-size: 1.5rem; }
+      
+      /* Contact Mobile */
+      .contact { padding: 40px 0; }
+      .contact h2 { font-size: 2rem; }
+      .contact p { font-size: 1.1rem; }
+      .person { font-size: 1rem; display: flex; flex-direction: column; gap: 5px; margin: 20px 0; }
+      
+      /* Sponsors Mobile */
+      .contact h3 { font-size: 1.8rem; }
+      .contact img { max-width: 120px !important; margin: 10px !important; }
+    }
+
+    /* Mobile Optimization - Phones */
+    @media (max-width: 480px) {
+      .container { padding: 0 10px; }
+      
+      /* Header Phone */
+      .header-content { padding: 10px 0; }
+      .header-left img { height: 50px; width: 60px; }
+      .brand-info h1 { font-size: 1.2rem; }
+      .brand-info p { font-size: 0.7rem; }
+      nav ul { gap: 15px; }
+      nav a { font-size: 0.8rem; }
+      
+      main { margin-top: 120px; }
+      
+      /* Hero Phone */
+      .hero { padding: 30px 0; }
+      .hero .dept { font-size: 1rem; }
+      .hero .eng { font-size: 1.5rem; }
+      .hero h2 { font-size: 2rem; }
+      .hero p { font-size: 1rem; margin-bottom: 25px; }
+      .cta-button { padding: 10px 25px; font-size: 0.9rem; }
+      
+      /* Event Details Phone */
+      .event-details { padding: 20px 15px; border-radius: 15px; }
+      .event-details h2 { font-size: 1.8rem; }
+      .event-details p { font-size: 1rem; }
+      .detail-card { padding: 15px; }
+      .detail-card i { font-size: 2rem; }
+      .detail-card h3 { font-size: 1.1rem; }
+      .detail-card p { font-size: 0.9rem; }
+      
+      /* Features Phone */
+      .features { padding: 30px 0; }
+      .features h2 { font-size: 1.8rem; }
+      .feature-card { padding: 20px; border-radius: 15px; }
+      .feature-card h3 { font-size: 1.2rem; }
+      .feature-card ul { font-size: 0.9rem; }
+      .feature-card li { margin: 3px 0; }
+      .feature-card .brief { font-size: 0.9rem; }
+      
+      /* Registration Phone */
+      .registration { padding: 20px 15px; border-radius: 15px; }
+      .registration h2 { font-size: 1.8rem; }
+      .registration p { font-size: 1rem; }
+      .countdown { gap: 10px; }
+      .countdown-item { padding: 12px 8px; min-width: 60px; }
+      .countdown-item .number { font-size: 1.3rem; }
+      .countdown-item .label { font-size: 0.7rem; }
+      
+      /* Registration buttons mobile */
+      .registration div[style*="margin-top: 40px"] div {
+        margin-bottom: 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+      }
+      
+      .registration .cta-button {
+        margin: 5px 0 !important;
+        padding: 12px 25px !important;
+        font-size: 0.9rem !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        text-align: center !important;
+      }
+      
+      /* Other Events Phone */
+      .other-events { padding: 30px 0 !important; }
+      .other-events h2 { font-size: 1.8rem !important; margin-bottom: 20px !important; }
+      .other-events img { max-width: 90% !important; height: auto !important; }
+      
+      /* Downloads Phone */
+      .downloads { padding: 30px 0 !important; }
+      .downloads h2 { font-size: 1.8rem !important; margin-bottom: 20px !important; }
+      .downloads .cta-button { padding: 12px 25px !important; font-size: 0.9rem !important; }
+      
+      /* Contact Phone */
+      .contact { padding: 30px 0; }
+      .contact h2 { font-size: 1.8rem; }
+      .contact p { font-size: 1rem; }
+      .person { font-size: 0.9rem; margin: 15px 0; }
+      
+      /* Sponsors Phone */
+      .contact h3 { font-size: 1.5rem !important; }
+      .contact img { max-width: 100px !important; margin: 8px !important; }
+      .contact div[style*="gap: 40px"] { gap: 20px !important; }
+      
+      /* Dignitary names - better mobile layout */
+      .contact div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 15px !important;
+      }
+      
+      /* Footer Phone */
+      footer { padding: 30px 0; }
+      footer p { font-size: 0.9rem; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 320px) {
+      .hero h2 { font-size: 1.8rem; }
+      .hero .eng { font-size: 1.3rem; }
+      .countdown { justify-content: center; }
+      .countdown-item { min-width: 55px; padding: 10px 6px; }
+      .countdown-item .number { font-size: 1.1rem; }
+      .cta-button { padding: 8px 20px; font-size: 0.8rem; }
+      
+      /* Registration buttons extra small */
+      .registration .cta-button {
+        padding: 10px 20px !important;
+        font-size: 0.85rem !important;
+        max-width: 250px !important;
+      }
+      
+      /* Other Events extra small */
+      .other-events h2 { font-size: 1.6rem !important; }
+      .other-events img { max-width: 95% !important; }
+      
+      /* Downloads extra small */
+      .downloads h2 { font-size: 1.6rem !important; }
+      .downloads .cta-button { padding: 10px 20px !important; font-size: 0.85rem !important; }
+      
+      /* Sponsors extra small */
+      .contact h3 { font-size: 1.3rem !important; }
+      .contact img { max-width: 80px !important; margin: 5px !important; }
+      .contact div[style*="gap: 40px"] { gap: 15px !important; }
+    }
   </style>
 </head>
 <body>
@@ -101,7 +285,7 @@
         <img src="AISSMSLOGO.png" alt="AISSMS Logo" class="hero-logo">
         <div class="dept">Department of Computer Engineering</div>
         <div class="eng">Engineering Today 2025</div>
-        <h2>Welcome to Innovate Sphere</h2>
+        <h2>Welcome to InnovateSphere</h2>
         <p>29th & 30th September 2025 </p>
         <a href="https://scan.page/qukEy5" class="cta-button" target="_blank"><i class="fas fa-rocket"></i> Register Now</a>
       </div>
@@ -202,11 +386,40 @@
           <div class="countdown-item"><span class="number" id="seconds">0</span><span class="label">Seconds</span></div>
         </div>
         <div style="margin-top: 40px;">
-          <a href="https://scan.page/qukEy5" class="cta-button" style="margin: 0 10px;" target="_blank"><i class="fas fa-user-plus"></i> Register Now</a>
-          <a href="https://chat.whatsapp.com/J92l78wqXeQGKD4Xi3EGHa" class="cta-button" style="margin: 0 10px; background: linear-gradient(135deg, #25d366, #128c7e);" target="_blank"><i class="fab fa-whatsapp"></i> Join WhatsApp Community</a>
+          <div style="margin-bottom: 20px;">
+            <a href="https://scan.page/qukEy5" class="cta-button" style="margin: 0 10px;" target="_blank"><i class="fas fa-user-plus"></i> Register Now</a>
+            <a href="https://chat.whatsapp.com/J92l78wqXeQGKD4Xi3EGHa" class="cta-button" style="margin: 0 10px; background: linear-gradient(135deg, #25d366, #128c7e);" target="_blank"><i class="fab fa-whatsapp"></i> Join WhatsApp Community</a>
+          </div>
+          <div>
+            <a href="https://forms.gle/TSBTvhFZXWmeAWt37" class="cta-button" style="margin: 0 10px; background: linear-gradient(135deg, #667eea, #764ba2);" target="_blank"><i class="fas fa-file-powerpoint"></i> Submit PPT for Round 1</a>
+          </div>
         </div>
       </div>
     </section>
+
+    <section class="downloads fade-in" style="padding: 60px 0; text-align: center; color: white; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-top: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="container">
+        <h2 style="font-family: 'Orbitron', monospace; font-size: 2.5rem; margin-bottom: 30px;">
+          <i class="fas fa-download"></i> PPT Format of InnovateSphere
+        </h2>
+        <div style="text-align: center;">
+          <a href="InnovateSphere_ppt_format.pptx" download="InnovateSphere_PPT_Format.pptx" class="cta-button" style="margin: 10px; background: linear-gradient(135deg, #667eea, #764ba2);" target="_blank">
+            <i class="fas fa-file-powerpoint"></i>
+            Download PPT Format
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="other-events fade-in" style="padding: 60px 0; text-align: center; color: white;">
+      <div class="container">
+        <a href="otherevents.html" style="text-decoration: none; color: inherit; display: block; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+          <h2 style="font-family: 'Orbitron', monospace; font-size: 2.5rem; margin-bottom: 30px; cursor: pointer;">Also checkout our other events</h2>
+          <img src="ALL.jpg" alt="Other Events" style="max-width: 60%; height: 40%; border-radius: 15px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+      </div>
+    </section>
+
      <section id="contact" class="contact fade-in" style="color: white;">
   <div class="container">
     <h2>For Queries Contact</h2>
@@ -215,10 +428,37 @@
     <div class="person"><i class="fas fa-user"></i> Samidha Dhawale  +91 9112210105</div>
     
     <div style="margin-top: 50px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 30px;">
-      <h3 style="font-family: 'Orbitron', monospace; font-size: 1.8rem; margin-bottom: 20px; color: #ffd54a;">Event Leadership</h3>
-      <div class="person"><i class="fas fa-user-tie"></i> <strong>Principal:</strong> Dr. D. S. Bormane</div>
-      <div class="person"><i class="fas fa-user-cog"></i> <strong>HOD:</strong> Dr. S. V. Athawale</div>
-      <div class="person"><i class="fas fa-user-check"></i> <strong>Coordinator:</strong> S. G. Dhengre</div>
+      <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <div class="person"><i class="fas fa-user-tie"></i> <strong>Principal:</strong> Dr. D. S. Bormane</div>
+        <div class="person"><i class="fas fa-user-cog"></i> <strong>HOD:</strong> Dr. S. V. Athawale</div>
+        <div class="person"><i class="fas fa-user-check"></i> <strong>Coordinator:</strong> S. G. Dhengre</div>
+      </div>
+    </div>
+    
+    <!-- Sponsors Section -->
+    <div style="margin-top: 60px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 40px; text-align: center;">
+      <h3 style="font-family: 'Orbitron', monospace; font-size: 2rem; margin-bottom: 30px; color: #ffd54a;">
+        <i class="fas fa-handshake"></i> Our Sponsors
+      </h3>
+      <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
+        We extend our heartfelt gratitude to our sponsors for their trust and unwavering support in making InnovateSphere 2025 a success.
+      </p>
+      
+      <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; margin-top: 30px;">
+        <div style="text-align: center;">
+          <img src="KasnetLogo.jpg" alt="Kasnet" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="text-align: center;">
+          <img src="MonarchLogo.jpg" alt="Monarch" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+        <div style="text-align: center;">
+          <img src="RekhaLogo.jpg" alt="Rekha" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        </div>
+      </div>
+      
+      <p style="font-size: 1rem; margin-top: 25px; opacity: 0.8; font-style: italic;">
+        Thank you for believing in innovation and supporting the next generation of engineers.
+      </p>
     </div>
   </div>
 </section>

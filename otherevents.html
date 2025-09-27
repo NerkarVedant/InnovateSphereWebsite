@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Other Events - InnovateSphere 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    /* Animated background particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 30px 20px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b);
+    }
+    
+    header h1 {
+      margin: 0;
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px 20px;
+      position: relative;
+    }
+    
+    .events-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 60px;
+      margin: 40px 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+    
+    .events-image {
+      max-width: 60%;
+      height: 30%;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      margin: 30px 0;
+    }
+    
+    .description {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 1.8;
+      margin: 30px 0;
+    }
+    
+    .event-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+    }
+    
+    .event-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    .event-subtitle {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #764ba2;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .event-image {
+      max-width: 70%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      display: block;
+    }
+    
+    .event-info {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      margin: 15px 0;
+    }
+    
+    .highlight {
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .phase-title {
+      font-weight: bold;
+      color: #764ba2;
+      margin-top: 20px;
+    }
+    
+    .register-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+      margin: 20px auto;
+      display: block;
+      text-align: center;
+      max-width: 200px;
+    }
+    
+    .register-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 60px auto 40px;
+      padding: 18px 35px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .back-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .back-button:hover::before {
+      left: 100%;
+    }
+    
+    .back-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(102, 126, 234, 0.6);
+    }
+    
+    .back-container {
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 40px;
+    }
+    
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      header { padding: 20px 15px; }
+      
+      .container {
+        margin: 30px auto;
+        padding: 20px 15px;
+      }
+      
+      .events-content {
+        padding: 30px 20px;
+        border-radius: 15px;
+      }
+      
+      .events-image {
+        max-width: 90%;
+      }
+      
+      .description {
+        font-size: 1.1rem;
+      }
+      
+      .event-card {
+        padding: 25px 20px;
+        margin: 30px 0;
+        border-radius: 15px;
+      }
+      
+      .event-title {
+        font-size: 1.5rem;
+      }
+      
+      .event-subtitle {
+        font-size: 1rem;
+      }
+      
+      .event-image {
+        max-width: 85%;
+      }
+      
+      .event-info {
+        font-size: 0.95rem;
+      }
+      
+      .register-button {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        max-width: 180px;
+      }
+      
+      .back-button {
+        padding: 15px 30px;
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.8rem; }
+      header { padding: 15px 10px; }
+      
+      .container {
+        margin: 20px auto;
+        padding: 15px 10px;
+      }
+      
+      .events-content {
+        padding: 20px 15px;
+        border-radius: 12px;
+      }
+      
+      .event-card {
+        padding: 20px 15px;
+        margin: 20px 0;
+        border-radius: 12px;
+      }
+      
+      .event-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+      }
+      
+      .event-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+      }
+      
+      .event-image {
+        max-width: 90%;
+        margin: 15px auto;
+      }
+      
+      .event-info {
+        font-size: 0.9rem;
+        margin: 10px 0;
+      }
+      
+      .register-button {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+        max-width: 160px;
+        margin: 15px auto;
+      }
+      
+      .phase-title {
+        margin-top: 15px;
+        font-size: 0.95rem;
+      }
+      
+      .highlight {
+        font-size: 0.9rem;
+      }
+      
+      .events-image {
+        max-width: 95%;
+      }
+      
+      .description {
+        font-size: 1rem;
+      }
+      
+      .back-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Extra small phones */
+    @media (max-width: 320px) {
+      header h1 { font-size: 1.6rem; }
+      
+      .event-card {
+        padding: 15px 12px;
+        margin: 15px 0;
+      }
+      
+      .event-title {
+        font-size: 1.1rem;
+      }
+      
+      .event-subtitle {
+        font-size: 0.9rem;
+      }
+      
+      .event-image {
+        max-width: 95%;
+      }
+      
+      .event-info {
+        font-size: 0.85rem;
+      }
+      
+      .register-button {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+        max-width: 140px;
+      }
+      
+      .back-button {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background particles -->
+  <div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 40%; animation-delay: 0.5s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="particle" style="left: 60%; animation-delay: 2.5s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 1.8s;"></div>
+  </div>
+
+  <header>
+    <h1>
+      <i class="fas fa-calendar-check"></i>
+      Other Events
+      <i class="fas fa-star"></i>
+    </h1>
+  </header>
+
+  <div class="container">
+    <div class="events-content">
+      <h2 style="font-family: 'Orbitron', monospace; font-size: 2.2rem; margin-bottom: 20px; color: #333;">Engineering Today 2025</h2>
+      
+      <div class="description">
+        <p>Explore the comprehensive lineup of exciting events happening during <strong>Engineering Today 2025</strong> at AISSMS College of Engineering.</p>
+        <p>From technical competitions to creative showcases, workshops to seminars - discover all the opportunities to learn, compete, and network with fellow engineers and industry experts.</p>
+        <p>Each event is designed to enhance your skills, broaden your horizons, and provide valuable experiences in various domains of engineering and technology.</p>
+      </div>
+      
+      <!-- Technical Treasure Hunt Event -->
+      <div class="event-card">
+        <h3 class="event-title">Technical Treasure Hunt 2025 – Pirates of the Seven Seas</h3>
+        <p class="event-subtitle">Navigate the Clues, Conquer the Seas, Claim the Treasure.</p>
+        
+        <img src="TreasureHuntPhoto.jpg" alt="Technical Treasure Hunt 2025" class="event-image">
+        
+        <div class="event-info">
+          <p><span class="highlight">Limited teams: MAX 50 (First Come, First serve)</span></p>
+          
+          <p>The Engineering Today of AISSMS College of Engineering, Pune is thrilled to announce its Technical Treasure Hunt. Get ready to solve quizzes, decode clues, and crack codes while testing your technical brilliance in an adventurous treasure-hunt format!</p>
+          
+          <p><span class="highlight">🗺 Event Theme:</span> Pirates of the Seven Seas</p>
+          <p><span class="highlight">📅 Dates & Time:</span> 29th September, 10:30 AM & 30th September, 10:30 AM</p>
+          <p><span class="highlight">📍 Venue:</span> In-person at AISSMS College of Engineering</p>
+          
+          <a href="https://scan.page/qukEy5" class="register-button" target="_blank">Register Now</a>
+          
+          <p class="phase-title">👥 Eligibility & Team Size:</p>
+          <p>1. Open for all Degree and Diploma students.<br>
+          2. Team size: 4 or 5 members.</p>
+          
+          <p class="phase-title">🎯 Objective:</p>
+          <p>To encourage critical thinking, teamwork, and technical problem-solving through a fun yet competitive treasure hunt experience.</p>
+          
+          <p class="phase-title">⚓ Event Structure (3 Phases)</p>
+          <p><span class="highlight">⿡ The Map of Mysteries</span> – Teams solve 4 technical puzzles; first 10 to finish qualify.</p>
+          <p><span class="highlight">⿢ Trials of the Seven Seas</span> – 10 teams face technical + physical challenges; fastest 5 qualify.</p>
+          <p><span class="highlight">⿣ The Final Voyage</span> – 5 teams compete in the ultimate puzzle quest; the first to crack the treasure wins, second is runner-up.</p>
+          
+          <p class="phase-title">🏆 Why Join?</p>
+          <p>1. Sharpen your logical reasoning, teamwork & problem-solving skills.<br>
+          2. Experience the thrill of a tech-themed treasure hunt adventure.<br>
+          3. Compete with peers, showcase talent, and claim exciting prizes.</p>
+          
+          <p class="phase-title">For any query Contact:</p>
+          <p><span class="highlight">Harshalee Malu:</span> 8010459882<br>
+          <span class="highlight">Aakash Haygonde:</span> 9226830338</p>
+        </div>
+      </div>
+      
+      <!-- BGMI Event -->
+      <div class="event-card">
+        <h3 class="event-title">BGMI Battlefield Arena 2025</h3>
+        <p class="event-subtitle">Drop In. Loot Up. Dominate.</p>
+        
+        <img src="BGMIPhoto.jpg" alt="BGMI Battlefield Arena 2025" class="event-image">
+        
+        <div class="event-info">
+          <p><span class="highlight">📅 Date & Time:</span> 29th & 30th Sept, 10:30 AM</p>
+          <p><span class="highlight">🌐 Mode:</span> Online – Play from anywhere!</p>
+          <p><span class="highlight">👥 Team Size:</span> 4 players (BGMI level 20+ only)</p>
+          
+          <a href="https://scan.page/qukEy5" class="register-button" target="_blank">Register Now</a>
+          
+          <p class="phase-title">📱 Device Requirements:</p>
+          <p>Mobile phones only (no emulators).</p>
+          
+          <p class="phase-title">⚠️ Rules:</p>
+          <p>Cheating, hacking, or teaming up = ❌ disqualification.</p>
+          
+          <p class="phase-title">🎯 Scoring System:</p>
+          <p>Rank Points + Kill Points (1 Kill = 1 Point)</p>
+          
+          <p class="phase-title">🗺️ Maps:</p>
+          <p>Erangel, Sanhok, Miramar</p>
+          
+          <p class="phase-title">🏆 Prizes:</p>
+          <p><span class="highlight">₹5,000 (1st) | ₹3,000 (2nd)</span><br>
+          Prizes Await the Winners!</p>
+          
+          <p style="margin-top: 20px; font-style: italic; color: #667eea;">Battle it out online in Engineering Today 2025 – BGMI Battlefield Arena!</p>
+          <p style="margin-top: 15px; color: #764ba2;">Squad outside the campus is welcomed as well</p>
+          
+          <p class="phase-title">For any query Contact:</p>
+          <p><span class="highlight">Kunal Undirwade:</span> +91 7020785804<br>
+          <span class="highlight">Laksh Mehta:</span> +91 9699582101</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="back-container">
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+      Back to Home
+    </a>
+  </div>
+</body>
+</html>

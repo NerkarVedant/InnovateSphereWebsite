@@ -203,20 +203,138 @@
       margin-top: 60px;
     }
 
+    /* Mobile Optimization - Tablets and smaller */
     @media (max-width: 768px) {
+      .container { padding: 20px 15px; }
+      
       h1 { 
-        font-size: 2rem; 
+        font-size: 2.2rem; 
         flex-direction: column;
         gap: 10px;
       }
-      .container { padding: 20px 15px; }
-      .intro-card { padding: 25px; }
+      
+      .subtitle { font-size: 1.1rem; }
+      
+      .intro-card { 
+        padding: 25px 20px; 
+        border-radius: 15px;
+      }
+      
+      .intro-card h2 { 
+        font-size: 1.6rem; 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      
+      .intro-card p { font-size: 1rem; }
+      
+      .requirements, .evaluation { 
+        padding: 20px; 
+        border-radius: 12px;
+      }
+      
+      .requirements h3, .evaluation h3 { 
+        font-size: 1.2rem; 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      
+      .req-item { font-size: 1rem; }
+      
       .criteria-grid { 
         grid-template-columns: 1fr;
+        gap: 12px;
       }
+      
       .criteria-item {
-        justify-content: center;
+        justify-content: flex-start;
+        padding: 12px;
       }
+      
+      .back-button { 
+        padding: 15px 30px; 
+        font-size: 1rem;
+        margin: 40px auto 30px;
+      }
+    }
+
+    /* Mobile Optimization - Phones */
+    @media (max-width: 480px) {
+      .container { padding: 15px 10px; }
+      
+      h1 { 
+        font-size: 1.8rem; 
+        margin-bottom: 15px;
+      }
+      
+      .subtitle { 
+        font-size: 1rem; 
+        margin-bottom: 25px;
+      }
+      
+      .intro-card { 
+        padding: 20px 15px; 
+        border-radius: 12px;
+      }
+      
+      .intro-card h2 { 
+        font-size: 1.4rem; 
+        margin-bottom: 15px;
+      }
+      
+      .intro-card p { 
+        font-size: 0.95rem; 
+        margin-bottom: 25px;
+      }
+      
+      .requirements, .evaluation { 
+        padding: 15px; 
+        margin-top: 25px;
+      }
+      
+      .requirements h3, .evaluation h3 { 
+        font-size: 1.1rem; 
+        margin-bottom: 12px;
+      }
+      
+      .req-item { 
+        font-size: 0.95rem; 
+        padding: 6px 0;
+      }
+      
+      .req-item i { width: 18px; }
+      
+      .criteria-grid { gap: 10px; }
+      
+      .criteria-item {
+        padding: 10px;
+        font-size: 0.95rem;
+      }
+      
+      .criteria-item i { font-size: 1.1rem; }
+      
+      .criteria-item span { font-size: 1rem; }
+      
+      .back-button { 
+        padding: 12px 25px; 
+        font-size: 0.9rem;
+        margin: 30px auto 25px;
+        gap: 8px;
+      }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 320px) {
+      h1 { font-size: 1.6rem; }
+      .subtitle { font-size: 0.9rem; }
+      .intro-card { padding: 15px 12px; }
+      .intro-card h2 { font-size: 1.2rem; }
+      .intro-card p { font-size: 0.9rem; }
+      .requirements, .evaluation { padding: 12px; }
+      .req-item, .criteria-item { font-size: 0.9rem; }
+      .back-button { padding: 10px 20px; font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -230,7 +348,7 @@
     <div class="intro-section">
       <div class="intro-card">
         <h2><i class="fas fa-rocket"></i> Freedom & Creativity</h2>
-        <p>Open Innovation is all about <strong>freedom and creativity</strong>. Teams can propose their own problem statements in any field they're passionate about – from <span class="highlight">sustainability and social good</span> to <span class="highlight">futuristic tech ideas</span>.</p>
+        <p>Open Innovation is all about <strong>freedom and creativity</strong>. Teams can propose their own problem statements in any field they're passionate about – from <strong>sustainability and social good</strong> to <strong>futuristic tech ideas</strong>.</p>
         
         <div class="requirements">
           <h3><i class="fas fa-clipboard-list"></i> Submission Requirements:</h3>

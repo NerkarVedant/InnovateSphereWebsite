@@ -14,6 +14,33 @@
     a.back { display: block; text-align: center; margin-top: 40px; color: #ffd54a; text-decoration: none; font-weight: bold; }
     a.back:hover { text-decoration: underline; }
     .problem { margin-bottom: 30px; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; }
+
+    /* Mobile Optimization */
+    @media (max-width: 768px) {
+      .container { padding: 20px 15px; }
+      h1 { font-size: 2.2rem; margin-bottom: 25px; }
+      h2 { font-size: 1.3rem; margin-top: 25px; }
+      p { font-size: 1rem; margin-bottom: 18px; }
+      .problem { padding: 18px; margin-bottom: 25px; border-radius: 10px; }
+      a.back { margin-top: 35px; font-size: 1.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 15px 10px; }
+      h1 { font-size: 1.8rem; margin-bottom: 20px; }
+      h2 { font-size: 1.2rem; margin-top: 20px; margin-bottom: 8px; }
+      p { font-size: 0.95rem; margin-bottom: 15px; }
+      .problem { padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+      a.back { margin-top: 30px; font-size: 1rem; }
+    }
+
+    @media (max-width: 320px) {
+      .container { padding: 12px 8px; }
+      h1 { font-size: 1.6rem; }
+      h2 { font-size: 1.1rem; }
+      p { font-size: 0.9rem; }
+      .problem { padding: 12px; }
+    }
   </style>
 </head>
 <body>
