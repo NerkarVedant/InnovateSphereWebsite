@@ -11,6 +11,368 @@
     body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+    /* Winner Announcement Popup Styles */
+    .winner-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(15px);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+    }
+
+    .winner-overlay.show-fireworks {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.1);
+      animation: showFireworksOnly 0.1s ease-in-out;
+    }
+
+    .winner-overlay.show-popup {
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.9);
+      animation: showPopup 0.8s ease-in-out;
+    }
+
+    .winner-popup {
+      background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+      border-radius: 30px;
+      padding: 60px 50px;
+      text-align: center;
+      box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
+      border: 3px solid #ffd700;
+      position: relative;
+      overflow: hidden;
+      max-width: 600px;
+      width: 90%;
+      opacity: 0;
+      transform: scale(0.3) rotate(-10deg);
+      transition: all 0.1s ease;
+    }
+
+    .winner-popup.visible {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+      animation: popupEntrance 1.2s ease-out;
+    }
+
+    .winner-popup::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.1), transparent, rgba(255, 215, 0, 0.1));
+      animation: rotateGlow 4s linear infinite;
+      z-index: -1;
+    }
+
+    .winner-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 3.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffd700, #ff6b6b, #667eea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 30px;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+
+    .winner-subtitle {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .winner-list {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0;
+    }
+
+    .winner-item {
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      margin: 20px 0;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+      animation: bounceIn 1.5s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .winner-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+
+    .winner-item.first {
+      background: linear-gradient(135deg, #ffd700, #ff6b6b);
+      color: white;
+      font-size: 1.4rem;
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    .winner-item.second {
+      background: linear-gradient(135deg, #c0c0c0, #667eea);
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .winner-position {
+      font-weight: 900;
+      font-size: 1.2em;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .winner-team {
+      font-weight: 700;
+      font-size: 1.1em;
+    }
+
+    .close-popup {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .close-popup:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+    }
+
+    /* Fireworks Animation */
+    .fireworks-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    .firework {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      animation: fireworkExplode 2s ease-out infinite;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+
+    .firework-spark {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, currentColor 50%, transparent 100%);
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+
+    .firework-trail {
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: linear-gradient(to bottom, currentColor, transparent);
+      border-radius: 1px;
+      animation: trailRise 1s ease-out;
+    }
+
+    .grand-firework {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      animation: grandFireworkExplode 2.5s ease-out;
+      filter: drop-shadow(0 0 15px currentColor);
+    }
+
+    .grand-spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+
+    /* Animations */
+    @keyframes showFireworksOnly {
+      from { opacity: 0; background: rgba(0, 0, 0, 0); }
+      to { opacity: 1; background: rgba(0, 0, 0, 0.1); }
+    }
+
+    @keyframes showPopup {
+      from { opacity: 0; background: rgba(0, 0, 0, 0.1); }
+      to { opacity: 1; background: rgba(0, 0, 0, 0.9); }
+    }
+
+    @keyframes popupEntrance {
+      0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+      60% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    @keyframes rotateGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5)); }
+      to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes fireworkExplode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+        filter: brightness(1.5) drop-shadow(0 0 15px currentColor);
+      }
+      50% {
+        transform: scale(3);
+        opacity: 0.8;
+        filter: brightness(1.2) drop-shadow(0 0 20px currentColor);
+      }
+      100% {
+        transform: scale(5);
+        opacity: 0;
+        filter: brightness(0.8) drop-shadow(0 0 10px currentColor);
+      }
+    }
+
+    @keyframes grandFireworkExplode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+        filter: brightness(2) drop-shadow(0 0 25px currentColor);
+      }
+      40% {
+        transform: scale(4);
+        opacity: 0.9;
+        filter: brightness(1.5) drop-shadow(0 0 30px currentColor);
+      }
+      100% {
+        transform: scale(7);
+        opacity: 0;
+        filter: brightness(0.8) drop-shadow(0 0 15px currentColor);
+      }
+    }
+
+    @keyframes trailRise {
+      0% {
+        transform: translateY(50px) scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(0) scale(1.1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-15px) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    @keyframes screenShake {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      10% { transform: translate(-2px, -1px) rotate(-0.5deg); }
+      20% { transform: translate(-1px, 1px) rotate(0.5deg); }
+      30% { transform: translate(1px, 1px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(0.5deg); }
+      50% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+      60% { transform: translate(-1px, 1px) rotate(0deg); }
+      70% { transform: translate(1px, 1px) rotate(-0.5deg); }
+      80% { transform: translate(-1px, -1px) rotate(0.5deg); }
+      90% { transform: translate(1px, 1px) rotate(0deg); }
+    }
+
+    .screen-shake {
+      animation: screenShake 0.5s ease-in-out;
+    }
+
+    /* Mobile responsive for popup */
+    @media (max-width: 768px) {
+      .winner-popup {
+        padding: 40px 30px;
+        margin: 20px;
+      }
+      
+      .winner-title {
+        font-size: 2.5rem;
+      }
+      
+      .winner-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .winner-item {
+        padding: 20px 25px;
+        font-size: 1rem;
+      }
+      
+      .winner-item.first {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .winner-popup {
+        padding: 30px 20px;
+      }
+      
+      .winner-title {
+        font-size: 2rem;
+      }
+      
+      .winner-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .winner-item {
+        padding: 15px 20px;
+        margin: 15px 0;
+      }
+    }
+
     header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); position: fixed; width: 100%; top: 0; z-index: 1000; transition: all 0.3s ease; }
     header.hidden { transform: translateY(-100%); }
     header.visible { transform: translateY(0); }
@@ -255,6 +617,35 @@
   </style>
 </head>
 <body>
+  <!-- Winner Announcement Popup -->
+  <div class="winner-overlay" id="winnerOverlay">
+    <div class="winner-popup">
+      <div class="fireworks-container" id="fireworksContainer"></div>
+      
+      <h1 class="winner-title">🎉 WINNERS ANNOUNCED! 🎉</h1>
+      <p class="winner-subtitle">InnovateSphere Hackathon 2025 Results</p>
+      
+      <ul class="winner-list">
+        <li class="winner-item first">
+          <span class="winner-position">🥇 Winner</span>
+          <span class="winner-team">Team "DMS"</span>
+        </li>
+        <li class="winner-item second">
+          <span class="winner-position">🥈 Runner-up</span>
+          <span class="winner-team">Team "Soil Satva"</span>
+        </li>
+      </ul>
+      
+      <p style="margin: 20px 0; font-style: italic; color: #666;">
+        Congratulations to all participants for their outstanding innovations!
+      </p>
+      
+      <button class="close-popup" onclick="closeWinnerPopup()">
+        Continue to Website
+      </button>
+    </div>
+  </div>
+
   <canvas id="particles"></canvas>
   
   <header>
@@ -518,6 +909,194 @@
       }
       
       lastScrollTop = scrollTop;
+    });
+
+    // Winner Popup and Fireworks Functionality
+    function createFirework(x, y, isGrand = false) {
+      const colors = ['#ffd700', '#ff6b6b', '#667eea', '#764ba2', '#ff9ff3', '#54a0ff'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      const firework = document.createElement('div');
+      firework.className = isGrand ? 'grand-firework' : 'firework';
+      firework.style.left = x + 'px';
+      firework.style.top = y + 'px';
+      firework.style.background = `radial-gradient(circle, ${color} 0%, rgba(255, 255, 255, 0.8) 40%, transparent 100%)`;
+      firework.style.color = color;
+      
+      // Create trailing effect - lighter for performance
+      const trail = document.createElement('div');
+      trail.className = 'firework-trail';
+      trail.style.left = x + 'px';
+      trail.style.top = (y + 30) + 'px';
+      trail.style.background = `linear-gradient(to bottom, ${color}, transparent)`;
+      trail.style.color = color;
+      
+      // Reduced spark count for better performance
+      const sparkCount = isGrand ? 12 : 8;
+      for (let i = 0; i < sparkCount; i++) {
+        const spark = document.createElement('div');
+        spark.className = isGrand ? 'grand-spark' : 'firework-spark';
+        spark.style.background = `radial-gradient(circle, rgba(255, 255, 255, 1) 0%, ${color} 50%, transparent 100%)`;
+        spark.style.color = color;
+        
+        const angle = (i * (360 / sparkCount)) * Math.PI / 180;
+        const distance = isGrand ? (40 + Math.random() * 20) : (25 + Math.random() * 15);
+        const sparkX = Math.cos(angle) * distance;
+        const sparkY = Math.sin(angle) * distance;
+        
+        spark.style.left = sparkX + 'px';
+        spark.style.top = sparkY + 'px';
+        spark.style.animation = isGrand ? 
+          `grandFireworkExplode ${2.5}s ease-out forwards` :
+          `fireworkExplode ${2}s ease-out forwards`;
+        spark.style.animationDelay = (Math.random() * 0.2) + 's';
+        
+        firework.appendChild(spark);
+      }
+      
+      return { firework, trail };
+    }
+
+    function createInitialFireworksBurst() {
+      const container = document.getElementById('fireworksContainer');
+      
+      // Reduced initial burst for smoother experience
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * (window.innerHeight * 0.6) + 100;
+          const isGrand = i < 2; // Only first 2 are grand fireworks
+          
+          const { firework, trail } = createFirework(x, y, isGrand);
+          container.appendChild(trail);
+          container.appendChild(firework);
+          
+          // Faster cleanup for performance
+          setTimeout(() => {
+            if (container.contains(firework)) container.removeChild(firework);
+            if (container.contains(trail)) container.removeChild(trail);
+          }, 2500);
+        }, i * 150); // Slightly slower succession for smoothness
+      }
+    }
+
+    function showWinnerPopup() {
+      const overlay = document.getElementById('winnerOverlay');
+      const popup = document.querySelector('.winner-popup');
+      
+      // Show popup with animation
+      overlay.classList.remove('show-fireworks');
+      overlay.classList.add('show-popup');
+      popup.classList.add('visible');
+    }
+
+    function startContinuousFireworks() {
+      const container = document.getElementById('fireworksContainer');
+      
+      function createRandomFirework() {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * (window.innerHeight * 0.6) + 100;
+        const isGrand = Math.random() < 0.15; // Reduced to 15% chance for grand firework
+        
+        const { firework, trail } = createFirework(x, y, isGrand);
+        container.appendChild(trail);
+        container.appendChild(firework);
+        
+        // Quick cleanup
+        setTimeout(() => {
+          if (container.contains(firework)) container.removeChild(firework);
+          if (container.contains(trail)) container.removeChild(trail);
+        }, 2500);
+      }
+      
+      // Continue creating fireworks at longer intervals
+      const fireworkInterval = setInterval(() => {
+        if (document.getElementById('winnerOverlay').style.display !== 'none') {
+          createRandomFirework();
+          
+          // Reduced chance for double burst
+          if (Math.random() < 0.2) {
+            setTimeout(createRandomFirework, 300);
+          }
+        } else {
+          clearInterval(fireworkInterval);
+        }
+      }, 1500); // Increased interval for smoother performance
+      
+      // Grand finale every 8 seconds
+      const grandFinaleInterval = setInterval(() => {
+        if (document.getElementById('winnerOverlay').style.display !== 'none') {
+          createGrandFinale();
+        } else {
+          clearInterval(grandFinaleInterval);
+        }
+      }, 8000);
+    }
+
+    function createGrandFinale() {
+      const container = document.getElementById('fireworksContainer');
+      const popup = document.querySelector('.winner-popup');
+      
+      // Lighter screen shake effect
+      if (popup.classList.contains('visible')) {
+        popup.classList.add('screen-shake');
+        setTimeout(() => popup.classList.remove('screen-shake'), 400);
+      }
+      
+      // Reduced number of grand fireworks for smoother performance
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * (window.innerHeight * 0.5) + 150;
+          const { firework, trail } = createFirework(x, y, true);
+          
+          container.appendChild(trail);
+          container.appendChild(firework);
+          
+          setTimeout(() => {
+            if (container.contains(firework)) container.removeChild(firework);
+            if (container.contains(trail)) container.removeChild(trail);
+          }, 3000);
+        }, i * 400);
+      }
+    }
+
+    function closeWinnerPopup() {
+      const overlay = document.getElementById('winnerOverlay');
+      overlay.style.animation = 'showPopup 0.5s ease-in-out reverse';
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 500);
+    }
+
+    // Initialize the celebration sequence
+    window.addEventListener('load', function() {
+      const overlay = document.getElementById('winnerOverlay');
+      
+      // Step 1: Show transparent overlay with fireworks only (0ms)
+      overlay.classList.add('show-fireworks');
+      
+      // Step 2: Start spectacular fireworks burst immediately
+      setTimeout(() => {
+        createInitialFireworksBurst();
+      }, 100);
+      
+      // Step 3: Show winner popup after fireworks have started (800ms)
+      setTimeout(() => {
+        showWinnerPopup();
+      }, 800);
+      
+      // Step 4: Start continuous fireworks after popup is visible (1200ms)
+      setTimeout(() => {
+        startContinuousFireworks();
+      }, 1200);
+    });
+
+    // Close popup when clicking outside
+    document.getElementById('winnerOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeWinnerPopup();
+      }
     });
   </script>
 </body>
