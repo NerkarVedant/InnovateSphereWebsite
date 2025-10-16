@@ -69,10 +69,11 @@ InnovateSphere 2025 focuses on six key domains:
 
 ### Required Software
 - **Web Browser:** 
-  - Google Chrome (version 90+)
-  - Mozilla Firefox (version 88+)
-  - Microsoft Edge (version 90+)
-  - Safari (version 14+)
+  - Google Chrome (version 100+)
+  - Mozilla Firefox (version 100+)
+  - Microsoft Edge (version 100+)
+  - Safari (version 15+)
+  - Any modern browser with HTML5, CSS3, and ES6+ JavaScript support
 - **Text Editor/IDE** (for development):
   - Visual Studio Code
   - Sublime Text
@@ -92,19 +93,19 @@ InnovateSphere 2025 focuses on six key domains:
 
 ## 🖥️ Hardware Requirements
 
-### Minimum Requirements
-- **Processor:** Intel Core i3 / AMD Ryzen 3 or equivalent
-- **RAM:** 4 GB
-- **Storage:** 500 MB free space
-- **Display:** 1280x720 resolution
-- **Internet:** Broadband connection (2 Mbps minimum)
+### Minimum Requirements (For viewing the website)
+- **Processor:** Any modern processor (2015 or newer)
+- **RAM:** 2 GB
+- **Storage:** 100 MB free space
+- **Display:** 1280x720 resolution (HD)
+- **Internet:** Stable internet connection (2 Mbps minimum for streaming content)
 
-### Recommended Requirements
-- **Processor:** Intel Core i5 / AMD Ryzen 5 or higher
+### Recommended Requirements (For development)
+- **Processor:** Intel Core i5 / AMD Ryzen 5 (2020 or newer)
 - **RAM:** 8 GB or more
-- **Storage:** 1 GB free space
-- **Display:** 1920x1080 resolution or higher
-- **Internet:** Broadband connection (10 Mbps or higher)
+- **Storage:** 2 GB free space (for development tools and dependencies)
+- **Display:** 1920x1080 resolution (Full HD) or higher
+- **Internet:** High-speed connection (10 Mbps or higher recommended)
 
 ### For Hackathon Participants
 - **Laptop/Desktop:** Required for development work
